@@ -2,23 +2,25 @@ package ddd.domaindrivendesign.vo;
 
 import lombok.Getter;
 
+import java.util.UUID;
+
 @Getter
 public class User {
 
     private final UserId id;
-    private String name;
+    private UserName name;
 
-    public User(UserId id, String name) {
+    public User(UserName name) {
 
-        if (id == null) throw new IllegalArgumentException();
+        if (name == null) throw new IllegalArgumentException();
 
-        this.id = id;
-        changeUserName(name);
+        this.id = new UserId(UUID.randomUUID().toString());
+        this.name = name;
     }
 
-    public void changeUserName(String name) {
+    public void changeUserName(UserName name) {
         if (name == null) throw new IllegalArgumentException("name 이 비었습니다.");
-        if (name.length() < 3) throw new IllegalArgumentException("사용자명은 3글자 이상이어야 함");
+        if (name.getUsername().length() < 3) throw new IllegalArgumentException("사용자명은 3글자 이상이어야 함");
 
         this.name = name;
     }

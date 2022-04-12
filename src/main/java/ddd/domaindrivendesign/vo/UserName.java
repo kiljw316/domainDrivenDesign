@@ -1,8 +1,11 @@
 package ddd.domaindrivendesign.vo;
 
+import lombok.Getter;
+
+@Getter
 public class UserName {
 
-    private String username;
+    private final String username;
 
     public UserName(String username) {
 
